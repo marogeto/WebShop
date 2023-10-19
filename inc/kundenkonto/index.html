@@ -1,0 +1,73 @@
+<?php
+//include_once("inc/contact/func.php");
+?>
+
+    <section class="hero-section position-relative bg-light-blue padding-medium">
+      <div class="hero-content">
+        <div class="container">
+          <div class="row">
+            <div class="text-center padding-large no-padding-bottom">
+              <h1 class="display-2 text-uppercase text-dark">Kundenkonto</h1>
+              <div class="breadcrumbs">
+                <span class="item">
+                  <a href="index.html">Home ></a>
+                </span>
+                <span class="item">Kundenkonto</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="contact-us padding-large">
+      <div class="container">
+        <div class="row">
+          <div class="contact-info col-lg-6 pb-3">
+            <h2 class="display-7 text-uppercase text-dark">Login</h2>
+            <p>Ich bin bereits Kunde:</p>
+            <form id="form" class="form-group flex-wrap" method="post">
+              <div class="form-input col-lg-12 d-flex mb-3">
+                <input type="hidden" name="login" value="1" />
+                <input type="email" name="email" placeholder="e-Mail" class="form-control ps-3 me-3 mb-3">
+                <input type="password" name="password" placeholder="Passwort" class="form-control ps-3 mb-3">
+              </div>
+              <button type="submit" class="btn btn-dark btn-medium text-uppercase btn-rounded-none">Login</button>
+            </form>
+	  </div>
+          <div class="inquiry-item col-lg-6">
+            <h2 class="display-7 text-uppercase text-dark">Kundenkonto einrichten</h2>
+            <p>Jetzt schnell und unkompliziert registrieren.</p>
+            <form id="form" class="form-group flex-wrap" method="post">
+              <input type="hidden" name="kundenkonto" value="1" />
+              <div class="form-input col-lg-12 d-flex mb-3">
+                <input type="text" name="vname" placeholder="Vorname" class="form-control ps-3 me-3 mb-3">
+                <input type="text" name="nname" placeholder="Nachname" class="form-control ps-3 me-3 mb-3">
+	      </div>
+              <div class="col-lg-12 mb-3">
+                <input type="text" name="strasse" placeholder="Strasse und Hausnummer" class="form-control ps-3">
+              </div>
+              <div class="form-input col-lg-12 d-flex mb-3">
+		<input type="text" name="plz" placeholder="Postleitzahl" class="form-control ps-3 mb-3">
+		<input type="text" name="ort" placeholder="Ort" class="form-control ps-3 mb-3">
+              </div>
+              <div class="col-lg-12 mb-3">
+                <input type="email" name="email" placeholder="E-Mail" class="form-control ps-3">
+	      </div>
+              <div class="col-lg-12 mb-3">
+                <input type="password" name="passwort1" placeholder="Passwort" class="form-control ps-3">
+	      </div>
+              <div class="col-lg-12 mb-3">
+                <input type="password" name="passwort2" placeholder="Passwort wiederholen" class="form-control ps-3">
+	      </div>
+	      <div class="col-lg-12 mb-3">
+                <input type="text" name="phone" placeholder="Telefonnummer" class="form-control ps-3">
+              </div>
+              <div class="col-lg-12 mb-3">
+                <input type="text" name="geburtsdatum" placeholder="Geburtsdatum" class="form-control ps-3">
+              </div>
+              <button type="submit" class="btn btn-dark btn-medium text-uppercase btn-rounded-none">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
