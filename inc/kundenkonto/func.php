@@ -1,7 +1,6 @@
 <?php
-<<<<<<< HEAD
 $vname = ''; $nname = ''; $strasse = ''; $hausnr = ''; $plz = ''; $ort = ''; $error = 0; $h = 1;
-$email = '';
+$email = ''; $password1 = ''; $password2='';
 if($_POST['kundenkonto'] === "1" && isset($_POST['kundenkonto'])){
         $h = 0;
 	
@@ -9,6 +8,7 @@ if($_POST['kundenkonto'] === "1" && isset($_POST['kundenkonto'])){
         $suchmuster_zahlen = '/^[0-9]{4,5}$/';
         $suchmuster_nr = '/^[0-9]{1,5}$/';
         $suchmuster_mail = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,5})$/';
+	$suchmuster_passwort = '/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?\*\'\}])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?\*\'\}\{\]\[]{8,20}$/';
 
         if(preg_match($suchmuster_string, $_POST['vname'])){
                 $vname = $_POST['vname'];
@@ -52,6 +52,12 @@ if($_POST['kundenkonto'] === "1" && isset($_POST['kundenkonto'])){
         }
         else{
                 $error += 64;
+	} 
+        if(preg_match($suchmuster_passwort, $_POST['password1']) && $_POST['password1'] == $_POST['password2']){
+                $password = $_POST['password1'];
+        }
+        else{
+                $error += 128;
 	} 
 /*
         if(preg_match($suchmuster_zahlen, $_POST['plz'])){
@@ -157,9 +163,5 @@ if(isset($_POST['kundenkonto']) && $_POST['kundenkonto'] == 1){
 		$contact = "Nachricht nicht versendet<br>";
 	}
 =======
- */
->>>>>>> a826fa39d734352798208e466ba3d1e981b75743
-
-}
  */
 ?>

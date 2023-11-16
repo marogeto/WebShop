@@ -45,7 +45,6 @@ include_once("inc/kundenkonto/func.php");
             <form id="form" class="form-group flex-wrap" method="post">
               <input type="hidden" name="kundenkonto" value="1" />
               <div class="form-input col-lg-12 d-flex mb-3">
-<<<<<<< HEAD
               <?php 
 		if($error % 2 == 0 || $h) 
 			echo '<input type="text" name="vname" placeholder="Vorname" class="form-control ps-3 me-3 mb-3" value="'.$vname.'" />';
@@ -84,19 +83,9 @@ include_once("inc/kundenkonto/func.php");
                 else
                         echo '<input style="background-color: #ed6d6d;" type="text" name="ort" placeholder="Fehler in Ort" class="form-control ps-3 mb-3" />';
               ?>
+	      
+	      </div>
 
-=======
-                <input type="text" name="vname" placeholder="Vorname" class="form-control ps-3 me-3 mb-3">
-                <input type="text" name="nname" placeholder="Nachname" class="form-control ps-3 me-3 mb-3">
-	          </div>
-              <div class="col-lg-12 mb-3">
-                <input type="text" name="strasse" placeholder="Strasse und Hausnummer" class="form-control ps-3">
-              </div>
-              <div class="form-input col-lg-12 d-flex mb-3">
-		        <input type="text" name="plz" placeholder="Postleitzahl" class="form-control ps-3 me-3 mb-3">
-		        <input type="text" name="ort" placeholder="Ort" class="form-control ps-3 me-3 mb-3">
->>>>>>> a826fa39d734352798208e466ba3d1e981b75743
-              </div>
               <div class="col-lg-12 mb-3">
 		<?php 
 		if( ($error>>6) % 2 == 0 || $h) 
@@ -105,17 +94,27 @@ include_once("inc/kundenkonto/func.php");
 			echo '<input style="background-color: #ed6d6d;" type="email" name="email"  placeholder="Fehler in E-Mail" class="form-control ps-3" />'; ?>
 
 	      </div>
-              <div class="col-lg-12 mb-3">
-                <input type="password" name="passwort1" placeholder="Passwort" class="form-control ps-3">
+             
+	      <div class="col-lg-12 mb-3">
+              <?php
+		if( ($error>>7) % 2 == 0 || $h)
+                        echo '<input type="password" name="password1" placeholder="Passwort" class="form-control ps-3" />';
+                else
+                        echo '<input style="background-color: #ed6d6d;" type="password" name="password1"  placeholder="Fehler in Passwort" class="form-control ps-3" />'; ?>
 	      </div>
               <div class="col-lg-12 mb-3">
-                <input type="password" name="passwort2" placeholder="Passwort wiederholen" class="form-control ps-3">
+              <?php
+		if( ($error>>7) % 2 == 0 || $h)
+                        echo '<input type="password" name="password2" placeholder="Passwort" class="form-control ps-3" />';
+                else
+                        echo '<input style="background-color: #ed6d6d;" type="password" name="password2"  placeholder="Fehler in Passwort" class="form-control ps-3" />'; ?>
+	      
 	      </div>
 	      <div class="col-lg-12 mb-3">
                 <input type="text" name="phone" placeholder="Telefonnummer" class="form-control ps-3">
               </div>
               <div class="col-lg-12 mb-3">
-                <input type="text" name="geburtsdatum" placeholder="Geburtsdatum" class="form-control ps-3">
+                <input type="date" name="geburtsdatum" placeholder="Geburtsdatum" class="form-control ps-3">
               </div>
               <button type="submit" class="btn btn-dark btn-medium text-uppercase btn-rounded-none">Submit</button>
             </form>
