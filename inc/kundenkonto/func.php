@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 $vname = ''; $nname = ''; $strasse = ''; $hausnr = ''; $plz = ''; $ort = ''; $error = 0; $h = 1;
 $email = '';
 if($_POST['kundenkonto'] === "1" && isset($_POST['kundenkonto'])){
@@ -158,7 +157,6 @@ if(isset($_POST['kundenkonto']) && $_POST['kundenkonto'] == 1){
 	}
 =======
  */
->>>>>>> a826fa39d734352798208e466ba3d1e981b75743
 
 }
  */
