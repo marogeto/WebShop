@@ -1,12 +1,13 @@
 <?php
 $vname = ''; $nname = ''; $strasse = ''; $hausnr = ''; $plz = ''; $ort = ''; $error = 0; $h = 1;
-
+$email = '';
 if($_POST['kundenkonto'] === "1" && isset($_POST['kundenkonto'])){
         $h = 0;
 	
 	$suchmuster_string = '/^[a-zA-ZÖÜöäü]{3,}$/';
         $suchmuster_zahlen = '/^[0-9]{4,5}$/';
         $suchmuster_nr = '/^[0-9]{1,5}$/';
+        $suchmuster_mail = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,5})$/';
 
         if(preg_match($suchmuster_string, $_POST['vname'])){
                 $vname = $_POST['vname'];
@@ -44,6 +45,12 @@ if($_POST['kundenkonto'] === "1" && isset($_POST['kundenkonto'])){
         }
         else{
                 $error += 32;
+	} 
+        if(preg_match($suchmuster_mail, $_POST['email'])){
+                $email = $_POST['email'];
+        }
+        else{
+                $error += 64;
 	} 
 /*
         if(preg_match($suchmuster_zahlen, $_POST['plz'])){
