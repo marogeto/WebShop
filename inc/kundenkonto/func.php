@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 $vname = ''; $nname = ''; $strasse = ''; $hausnr = ''; $plz = ''; $ort = ''; $error = 0; $h = 1;
 $email = '';
 if($_POST['kundenkonto'] === "1" && isset($_POST['kundenkonto'])){
@@ -74,6 +75,48 @@ if($_POST['kundenkonto'] === "1" && isset($_POST['kundenkonto'])){
 
 
 if(isset($_POST["email"]) && isset($_POST['kundenkonto'])){
+=======
+$kundenkonto = "";
+if(isset($_POST['kundenkonto']) && $_POST['kundenkonto'] == 1){
+    # Test auf übergebe"ne Parameter
+    $error = 0;
+    $zeichenkette = "A-Za-z ";
+    $zeichenkette_strasse = "A-Za-z.0-9";
+    $nummern = "0-9";
+
+    if(preg_match($_POST['vname'], $zeichenkette)){
+        $_SESSION['vname'] = $_POST['vname'];
+    }
+    else {
+        $error = 1;
+    }
+    if(preg_match($_POST['nname'], $zeichenkette)){
+        $_SESSION['nname'] = $_POST['nname'];
+    }
+    else {
+        $error += 2;
+    }
+    if(preg_match($_POST['strasse'], $zeichenkette_strasse)){
+        $_SESSION['strasse'] = $_POST['strasse'];
+    }
+    else {
+        $error += 4;
+    }
+    if(preg_match($_POST['plz'], $nummern)){
+        $_SESSION['plz'] = $_POST['plz'];
+    }
+    else {
+        $error += 8;
+    }
+    if(preg_match($_POST['ort'], $zeichenkette)){
+        $_SESSION['ort'] = $_POST['ort'];
+    }
+    else {
+        $error += 16;
+    }
+
+
+>>>>>>> a826fa39d734352798208e466ba3d1e981b75743
 /*	$servername = "localhost";
         $username = "roesslerma";
         $password = "passwort";
@@ -96,6 +139,7 @@ if(isset($_POST["email"]) && isset($_POST['kundenkonto'])){
                 }
         }
         $conn->close();
+<<<<<<< HEAD
  
 	$empfaenger = 'roesslerma@elektronikschule.de';
 	$betreff = $_POST['subject'];
@@ -112,6 +156,9 @@ if(isset($_POST["email"]) && isset($_POST['kundenkonto'])){
 	else{
 		$contact = "Nachricht nicht versendet<br>";
 	}
+=======
+ */
+>>>>>>> a826fa39d734352798208e466ba3d1e981b75743
 
 }
  */
