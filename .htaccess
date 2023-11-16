@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+   RewriteEngine on
+   RewriteBase /~roesner/webshop
+   RewriteRule ^$ index.php?id=start/index.html [L,R]
+   RewriteRule ^/$ index.php?id=start/index.html [L,R]
+   RewriteRule ([^/].+/[^/]+.php)$ index.php?id=$1 [R]
+   RewriteRule ([^/].+/[^/]+.html)$ index.php?id=$1 [R]
+</IfModule>
+

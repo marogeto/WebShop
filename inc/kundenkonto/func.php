@@ -1,6 +1,72 @@
 <?php
-$contact = "";
-if(isset($_POST["email"]) && isset($_POST['contact'])){
+$vname = ''; $nname = ''; $strasse = ''; $hausnr = ''; $plz = ''; $ort = ''; $error = 0; $h = 1;
+
+if($_POST['kundenkonto'] === "1" && isset($_POST['kundenkonto'])){
+        $h = 0;
+	
+	$suchmuster_string = '/^[a-zA-ZÖÜöäü]{3,}$/';
+        $suchmuster_zahlen = '/^[0-9]{4,5}$/';
+        $suchmuster_nr = '/^[0-9]{1,5}$/';
+
+        if(preg_match($suchmuster_string, $_POST['vname'])){
+                $vname = $_POST['vname'];
+        }
+        else{
+                $error += 1;
+        }
+        if(preg_match($suchmuster_string, $_POST['nname'])){
+                $nname = $_POST['nname'];
+        }
+        else{
+                $error += 2;
+        }
+        if(preg_match($suchmuster_string, $_POST['strasse'])){
+                $strasse = $_POST['strasse'];
+        }
+        else{
+                $error += 4;
+        }
+
+        if(preg_match($suchmuster_nr, $_POST['hausnr'])){
+                $hausnr = $_POST['hausnr'];
+        }
+        else{
+                $error += 8;
+	} 
+        if(preg_match($suchmuster_zahlen, $_POST['plz'])){
+                $plz = $_POST['plz'];
+        }
+        else{
+                $error += 16;
+	} 
+        if(preg_match($suchmuster_string, $_POST['ort'])){
+                $ort = $_POST['ort'];
+        }
+        else{
+                $error += 32;
+	} 
+/*
+        if(preg_match($suchmuster_zahlen, $_POST['plz'])){
+                $plz = $_POST['plz'];
+        }
+        else{
+                $error += 2;
+        }
+
+        if(preg_match($suchmuster_string, $_POST['ort'])){
+                $ort = $_POST['ort'];
+        }
+        else{
+                $error += 4;
+	} */
+}
+
+/*
+
+
+
+
+if(isset($_POST["email"]) && isset($_POST['kundenkonto'])){
 /*	$servername = "localhost";
         $username = "roesslerma";
         $password = "passwort";
@@ -23,7 +89,7 @@ if(isset($_POST["email"]) && isset($_POST['contact'])){
                 }
         }
         $conn->close();
- */
+ 
 	$empfaenger = 'roesslerma@elektronikschule.de';
 	$betreff = $_POST['subject'];
 	$nachricht = 'Nachricht von: '.$_POST['name']."\n".$_POST['message'];
@@ -41,5 +107,5 @@ if(isset($_POST["email"]) && isset($_POST['contact'])){
 	}
 
 }
-
+ */
 ?>
