@@ -49,6 +49,12 @@ include_once("inc/kundenkonto/func.php");
           <div class="contact-info col-lg-6 pb-3">
             <h2 class="display-7">Sie sind als '.
 	    $_SESSION['vname'].' '.$_SESSION['nname'].' eingeloggt.</h2>
+            <form id="form" class="form-group flex-wrap" method="post">
+              <div class="form-input col-lg-12 d-flex mb-3">
+                <input type="hidden" name="logout" value="1" />
+              </div>
+              <button type="submit" class="btn btn-dark btn-medium text-uppercase btn-rounded-none">Logout</button>
+            </form>
           </div>';
     }
 

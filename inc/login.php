@@ -27,5 +27,13 @@ if(!isset($_SESSION['login']) && $_POST['login'] == 1) {
         }
         $conn->close();
 }
+
+if(isset($_SESSION['login']) && $_POST['logout'] == 1) {
+	foreach($_SESSION as $k => $v){
+		unset($_SESSION[$k]);
+	}
+	session_destroy();
+}
+
 ?>
 
