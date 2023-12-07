@@ -21,7 +21,7 @@ include_once("inc/kundenkonto/func.php");
     </section>
 
     <?php
-    if($error != 0 || !isset($_POST['kundenkonto'])){
+    if(!isset($_SESSION['login'])) {
     ?>
 
     <div class="contact-us padding-large">
@@ -39,8 +39,23 @@ include_once("inc/kundenkonto/func.php");
               <button type="submit" class="btn btn-dark btn-medium text-uppercase btn-rounded-none">Login</button>
             </form>
 	  </div>
+    <?php
+    }
+    else{
+	echo '
+        <div class="contact-us padding-large">
+	 <div class="container">
+          <div class="row">
+          <div class="contact-info col-lg-6 pb-3">
+            <h2 class="display-7">Sie sind als '.
+	    $_SESSION['vname'].' '.$_SESSION['nname'].' eingeloggt.</h2>
+          </div>';
+    }
+
+    if($error != 0 || !isset($_POST['kundenkonto'])){ 
+    ?>
           <div class="inquiry-item col-lg-6">
-	    <h2 class="display-7 text-uppercase text-dark">Kundenkonto einrichten <?=$error;?></h2>
+	  <h2 class="display-7 text-uppercase text-dark">Kundenkonto einrichten </h2>
             <p>Jetzt schnell und unkompliziert registrieren.</p>
             <form id="form" class="form-group flex-wrap" method="post">
               <input type="hidden" name="kundenkonto" value="1" />
@@ -111,17 +126,29 @@ include_once("inc/kundenkonto/func.php");
 	      
 	      </div>
 	      <div class="col-lg-12 mb-3">
-                <input type="text" name="phone" placeholder="Telefonnummer" class="form-control ps-3">
-              </div>
+                <?php 
+                if( ($error>>7) % 2 == 0 || $h)
+                        echo '<input type="text" name="phone" placeholder="Telefonnummer" class="form-control ps-3" value="'.$phone.'" />';
+                else
+                        echo '<input style="background-color: #ed6d6d;" type="text" name="phone"  placeholder="Fehler in Telefonnummer" class="form-control ps-3" />'; ?>
+	      </div>
               <div class="col-lg-12 mb-3">
-                <input type="date" name="geburtsdatum" placeholder="Geburtsdatum" class="form-control ps-3">
+                <input type="date" name="geburtsdatum" placeholder="Geburtsdatum" class="form-control ps-3" required="required">
               </div>
               <button type="submit" class="btn btn-dark btn-medium text-uppercase btn-rounded-none">Submit</button>
             </form>
           </div>
+<?php
+   }
+   else {
+      $kk = kundenKontoAnlegen();
+      echo '
+      <div class="inquiry-item col-lg-6">
+          <h2 class="display-7 text-uppercase text-dark">'.$kk.'</h2>
+      </div>';
+   }
+?>
         </div>
       </div>
     </div>
-<?php
-   }
-?>
+

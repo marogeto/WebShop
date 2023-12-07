@@ -1,6 +1,7 @@
 <?php
 $vname = ''; $nname = ''; $strasse = ''; $hausnr = ''; $plz = ''; $ort = ''; $error = 0; $h = 1;
-$email = ''; $password1 = ''; $password2='';
+$email = ''; $password1 = ''; $password2=''; $phone='';
+
 if($_POST['kundenkonto'] === "1" && isset($_POST['kundenkonto'])){
         $h = 0;
 	
@@ -8,9 +9,12 @@ if($_POST['kundenkonto'] === "1" && isset($_POST['kundenkonto'])){
         $suchmuster_zahlen = '/^[0-9]{4,5}$/';
         $suchmuster_nr = '/^[0-9]{1,5}$/';
         $suchmuster_mail = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,5})$/';
-	$suchmuster_passwort = '/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?\*\'\}])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?\*\'\}\{\]\[]{8,20}$/';
+	#$suchmuster_passwort = '/^(?=.*\d)(?=.*[@#\-_$%^&+=§!\?\*\'\}])(?=.*[a-z])(?=.*[A-Z])[0-9A-Za-z@#\-_$%^&+=§!\?\*\'\}\{\]\[]{4,20}$/';
+	$suchmuster_passwort = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{4,}$/'; 
+	$suchmuster_phone = '/^[0-9\+\-]{5,}$/';
 
-        if(preg_match($suchmuster_string, $_POST['vname'])){
+
+	if(preg_match($suchmuster_string, $_POST['vname'])){
                 $vname = $_POST['vname'];
         }
         else{
@@ -53,115 +57,43 @@ if($_POST['kundenkonto'] === "1" && isset($_POST['kundenkonto'])){
         else{
                 $error += 64;
 	} 
-        if(preg_match($suchmuster_passwort, $_POST['password1']) && $_POST['password1'] == $_POST['password2']){
+        if($_POST['password1'] == $_POST['password2']){
                 $password = $_POST['password1'];
         }
         else{
                 $error += 128;
 	} 
-/*
-        if(preg_match($suchmuster_zahlen, $_POST['plz'])){
-                $plz = $_POST['plz'];
+        if(preg_match($suchmuster_phone, $_POST['phone'])){
+                $phone = $_POST['phone'];
         }
         else{
-                $error += 2;
-        }
-
-        if(preg_match($suchmuster_string, $_POST['ort'])){
-                $ort = $_POST['ort'];
-        }
-        else{
-                $error += 4;
-	} */
+                $error += 256;
+	} 
 }
 
-/*
 
-
-
-
-if(isset($_POST["email"]) && isset($_POST['kundenkonto'])){
-=======
-$kundenkonto = "";
-if(isset($_POST['kundenkonto']) && $_POST['kundenkonto'] == 1){
-    # Test auf übergebe"ne Parameter
-    $error = 0;
-    $zeichenkette = "A-Za-z ";
-    $zeichenkette_strasse = "A-Za-z.0-9";
-    $nummern = "0-9";
-
-    if(preg_match($_POST['vname'], $zeichenkette)){
-        $_SESSION['vname'] = $_POST['vname'];
-    }
-    else {
-        $error = 1;
-    }
-    if(preg_match($_POST['nname'], $zeichenkette)){
-        $_SESSION['nname'] = $_POST['nname'];
-    }
-    else {
-        $error += 2;
-    }
-    if(preg_match($_POST['strasse'], $zeichenkette_strasse)){
-        $_SESSION['strasse'] = $_POST['strasse'];
-    }
-    else {
-        $error += 4;
-    }
-    if(preg_match($_POST['plz'], $nummern)){
-        $_SESSION['plz'] = $_POST['plz'];
-    }
-    else {
-        $error += 8;
-    }
-    if(preg_match($_POST['ort'], $zeichenkette)){
-        $_SESSION['ort'] = $_POST['ort'];
-    }
-    else {
-        $error += 16;
-    }
-
-
->>>>>>> a826fa39d734352798208e466ba3d1e981b75743
-/*	$servername = "localhost";
-        $username = "roesslerma";
-        $password = "passwort";
-        $dbname = "roesslerma";
+function kundenKontoAnlegen(){
         // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
+        $conn = new mysqli(DBSERVER, DBUSER, DBPASS, DBNAME);
         // Check connection
         if ($conn->connect_error) {
         	die("Connection failed: " . $conn->connect_error);
-        }
-	$sql = 'INSERT INTO ws_subscribe (mail, verifizierung) VALUES ("'.$_POST['EMAIL'].'", 0)';
-        if ($conn->query($sql) === TRUE) {
-		$subscribe = "New record created successfully";
+	}
+
+	$pass = password_hash($_POST['password1'], PASSWORD_DEFAULT);
+
+	$sql = 'INSERT INTO ws_kunde (kid,vname,nname,strasse,hausnr,plz,ort,email,passwd,tel,geb) '.
+		'VALUES (NULL, "'.$_POST['vname'].'","'.$_POST['nname'].'","'.$_POST['strasse'].'","'.
+		$_POST['hausnr'].'","'.$_POST['plz'].'","'.$_POST['ort'].'","'.$_POST['email'].'","'.
+		$pass.'","'.$_POST['phone'].'","'.$_POST['geburtsdatum'].'" )';
+
+	if ($conn->query($sql) === TRUE) {
+		$kundenkonto = "Kundenkonto wurde erfolgreich angelegt";
         } else {
-                $sql = 'DELETE FROM ws_subscribe WHERE mail = "'.$_POST['EMAIL'].'"';
-                if ($conn->query($sql) === TRUE) {
-         	       $subscribe = "Record deleted successfully";
-                }else{
-                       echo "Error: " . $sql . "<br>" . $conn->error;
-                }
+		$kundenkonto = "Kundenkonto konnte nicht angelegt werden, da die Mail-Adresse schon vergeben ist.";
         }
         $conn->close();
-<<<<<<< HEAD
- 
-	$empfaenger = 'roesslerma@elektronikschule.de';
-	$betreff = $_POST['subject'];
-	$nachricht = 'Nachricht von: '.$_POST['name']."\n".$_POST['message'];
-	$header = array(
-	    'From' => $_POST['email'],
-	    'Reply-To' => $empfaenger,
-	    'X-Mailer' => 'PHP/' . phpversion()
-	);
+	return $kundenkonto;
+}
 
-	if(mail($empfaenger, $betreff, $nachricht, $header) === TRUE){
-		$contact = "Nachricht versendet<br>".$nachricht;
-	}
-	else{
-		$contact = "Nachricht nicht versendet<br>";
-	}
-=======
- */
 ?>

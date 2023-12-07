@@ -1,12 +1,8 @@
 <?php
 $subscribe = "";
 if(isset($_POST["EMAIL"]) && isset($_POST['subscribe'])){
-	$servername = "localhost";
-        $username = "roesner";
-        $password = "12345";
-        $dbname = "roesner";
         // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
+        $conn = new mysqli(DBSERVER, DBUSER, DBPASS, DBNAME);
         // Check connection
         if ($conn->connect_error) {
         	die("Connection failed: " . $conn->connect_error);

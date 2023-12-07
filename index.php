@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+include_once("inc/config.php");
+include_once("inc/login.php");
 include_once("inc/head/index.html");
 include_once("inc/svg/index.html");
 include_once("inc/suche_popup/index.html");

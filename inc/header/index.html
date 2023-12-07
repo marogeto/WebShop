@@ -49,7 +49,8 @@ function zeigeMenu(){
                           <svg class="user">
                             <use xlink:href="#user"></use>
                           </svg>
-                        </a>
+			  <?php if($_SESSION['login'] == 1) echo $_SESSION['nname']; ?>
+			</a>
                       </li>
                       <li>
                         <a href="cart/index.html">

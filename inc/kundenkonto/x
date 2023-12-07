@@ -1,0 +1,11 @@
+<?php
+$string = password_hash("rasmuslerdorf", PASSWORD_DEFAULT);
+echo $string."\n";
+
+if(password_verify("rasmuslerdorf", $string))
+  echo 'ok'."\n";
+
+echo password_hash("", PASSWORD_DEFAULT);
+echo "";
+
+?>
